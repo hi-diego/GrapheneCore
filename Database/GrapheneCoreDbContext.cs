@@ -34,6 +34,11 @@ public class GrapheneCoreDbContext : DbContext
         }
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.LogTo(Console.WriteLine)
+            .EnableSensitiveDataLogging();
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder); // Always call base.OnModelCreating

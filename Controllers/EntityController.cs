@@ -3,11 +3,12 @@ using GrapheneCore.Database;
 using GrapheneCore.Entities;
 using System.Linq.Dynamic.Core;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace GrapheneCore.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api")]
 public class EntityController : ControllerBase
 {
     private readonly GrapheneCoreDbContext DbContext;
@@ -44,6 +45,7 @@ public class EntityController : ControllerBase
                 : $"\"{cleanedValue}\"";
             System.Console.WriteLine(key + fortmattedValue);
             queryable = queryable.Where(key + fortmattedValue);
+            System.Console.WriteLine(queryable.ToQueryString());
         }
         return queryable;
     }
